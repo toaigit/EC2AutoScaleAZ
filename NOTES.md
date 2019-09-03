@@ -1,5 +1,5 @@
 Additional options you can added to the main.tf file
-* iam_instance_profile = "{var.IAMROLE}"  --> in aws_launch_configuration section
+* iam_instance_profile = "{$var.IAM_ROLE}"  --> in aws_launch_configuration section
 * if you need Elastic IP for your instance, you can create the eip.tf file as follows
 ```
 resource "aws_eip" "my_eip" {
