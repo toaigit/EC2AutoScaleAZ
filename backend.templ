@@ -1,0 +1,7 @@
+terraform {
+  backend "s3" {
+    bucket = "{{.Env.BUCKET_NAME}}"
+    key    = "{{.Env.TFSTATE_FILE}}"
+    region = "{{.Env.REGION}}"
+  }
+}

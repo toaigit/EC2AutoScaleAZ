@@ -1,0 +1,5 @@
+#!/bin/bash
+/bin/timedatectl set-timezone America/Los_Angeles
+/bin/hostname {{.Env.SERVERNAME}}
+echo PS1=\"[\\u@{{.Env.SERVERNAME}}]\" >> /etc/bashrc 
+systemctl restart sshd.service\n"

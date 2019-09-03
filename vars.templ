@@ -1,0 +1,73 @@
+variable  "SERVERNAME" {
+  default = "{{.Env.SERVERNAME}}"
+}
+
+variable  "CREATOR" {
+  default = "{{.Env.CREATOR}}"
+}
+
+variable  "REGION" {
+  default = "{{.Env.REGION}}"
+}
+
+variable "ASG_NAME" {
+   default = "{{.Env.ASG_NAME}}"
+  }
+
+variable "LC_NAME" {
+   default = "{{.Env.LC_NAME}}"
+  }
+
+variable "SUBNET1" {
+   default = "{{.Env.SUBNET1}}"
+  }
+variable "SUBNET2" {
+   default = "{{.Env.SUBNET2}}"
+  }
+variable "SUBNET3" {
+   default = "{{.Env.SUBNET3}}"
+  }
+
+variable "MIN_SIZE" {
+   default = "{{.Env.MIN_SIZE}}"
+  }
+
+variable "MAX_SIZE" {
+   default = "{{.Env.MAX_SIZE}}"
+  }
+
+variable "ASG_DESIRE" {
+   default = "{{.Env.ASG_DESIRE}}"
+  }
+
+variable "HEALTH_CHECK_GRACE_PERIOD" {
+   default = "{{.Env.HEALTH_CHECK_GRACE_PERIOD}}"
+  }
+
+variable "IMAGE_ID" {
+   default = "{{.Env.IMAGE_ID}}"
+  }
+
+variable "INSTANCE_TYPE" {
+   default = "{{.Env.INSTANCE_TYPE}}"
+  }
+
+variable "KEY_NAME" {
+   default = "{{.Env.KEY_NAME}}"
+  }
+
+variable "SG" {
+   default = "{{.Env.SG}}"
+  }
+
+variable "VOLUME_TYPE" {
+   default = "{{.Env.VOLUME_TYPE}}"
+  }
+
+variable "VOLUME_SIZE" {
+   default = "{{.Env.VOLUME_SIZE}}"
+  }
+
+variable "DELETE_ON_TERMINATION" {
+   default = "{{.Env.DELETE_ON_TERMINATION}}"
+  }
