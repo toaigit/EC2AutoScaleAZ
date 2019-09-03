@@ -8,12 +8,13 @@ resource "aws_eip" "my_eip" {
     prevent_destroy = false
   }
 }
-output "myeip_output" {
+output "myeip_id" {
    value = "${aws_eip.my_eip.id}"
 }
 
-output "myeip_iaddr_output" {
-  value = "${aws_eip.my_eip.public_ip}"
-}   
+```
+* Add the following line in your userdata
+```
+/path/to/aws ec2 associate-address --instance-id $(curl http://169.254.169.254/latest/meta-data/instance-id) --allocation-id "${aws_eip.my_eip.id}" --allow-reassociation --region "${var.REGION}"
 ```
 #  end   #
