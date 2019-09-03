@@ -22,27 +22,27 @@ output "myeip_id" {
 ```
 resource "aws_elb" "bastionELB" {
   name = "bastionELB"
-  security_groups = ["${var.SG_elbhttp}"]
-  subnets = ["${var.subnet1}","${var.subnet2}","${var.subnet3}"]
+  security_groups = ["${var.SG}"]
+  subnets = ["${var.SUBNIET1}","${var.SUBNET2}","${var.SUBNET3}"]
   health_check {
     healthy_threshold = 2
     unhealthy_threshold = 2
     timeout = 3
     interval = 30
-    target = "HTTP:${var.http_server_port}/"
+    target = "HTTP:${var.HTTP_SERVER_PORT}/"
   }
   listener {
-    lb_port = 80
-    lb_protocol = "http"
-    instance_port = "${var.http_server_port}"
+    lb_port           = 80
+    lb_protocol       = "http"
+    instance_port     = "${var.HTTP_SERVER_PORT}"
     instance_protocol = "http"
   }
  listener {
-    instance_port = "${var.http_server_port}"
-    instance_protocol  = "http"
     lb_port            = 443
     lb_protocol        = "https"
-    ssl_certificate_id = "${var.ssl_cert_arn}"
+    instance_port      = "${var.HTTP_SERVER_PORT}"
+    instance_protocol  = "http"
+    ssl_certificate_id = "${var.SSL_CERT_ARN}"
   }
 }
 
