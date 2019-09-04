@@ -20,6 +20,7 @@ NOTEs:
 *  Update vars.env based on your AWS environment
 *  Run ./gen-vars.sh (Making sure you have installed gomplate)
 *  You should see backend.ft, userdata.sh, main.tf and vars.tf in the folder now.
+*  Set AWS environment variabes AWS_ACCESS_KEY_ID, AWS_SECRET_ACCESS_KEY, AWS_DEFAULT_REGION
 *  Run terrafrom init, terraform plan, and terraform apply.
 *  To save money, you may want to run terraform destroy.
 #  end   #
