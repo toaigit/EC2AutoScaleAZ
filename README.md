@@ -1,3 +1,4 @@
+### Overview
 This provides a basic frame work on creating EC2 instance with terraform.  All you need is to update the vars.env file with appropriate values of your AWS accounts such as AMI, VPC, SG. 
 * vars.env - Update this file before running gen-vars.sh script.
 * gen-vars.sh - It generates backend.tf, vars.tf, and userdata.sh files based on the vars.env values.
@@ -14,4 +15,11 @@ NOTEs:
 
 * You should not make change to the EC2 manually with CLI, or from console.  
 * gen-vars.sh requires gomplate.  To Install gomplate curl -o /usr/local/bin/gomplate -sSL https://github.com/hairyhenderson/gomplate/releases/download/v3.5.0/gomplate_linux-amd64; chmod 755 /usr/local/bin/gomplate
+
+### Steps to create EC2
+*  Update vars.env based on your AWS environment
+*  Run ./gen-vars.sh (Making sure you have installed gomplate)
+*  You should see backend.ft, userdata.sh, main.tf and vars.tf in the folder now.
+*  Run terrafrom init, terraform plan, and terraform apply.
+*  To save money, you may want to run terraform destroy.
 #  end   #
