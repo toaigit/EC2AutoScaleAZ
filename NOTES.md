@@ -116,4 +116,14 @@ output "elb_dns_name" {
 ```
 load_balancers            = ["${aws_elb.bastionELB.name}"]
 ```
+* List of AMI
+```
+aws ec2 describe-images --owner self --query 'Images[*][ImageId,Name]' --output text | sort -k2  (your own images)
+aws ec2 describe-images --owner 379101102735 --query 'Images[*][ImageId,Name]' --output text | sort -k2 (Debian Images)
+```
+* List of Subnets and VPC
+```
+aws ec2  describe-vpcs --query 'Vpcs[*][VpcId,Tags[?Key==`Name`].Value[]]' --output=table  (List of VPCs)
+aws ec2 describe-subnets --query 'Subnets[*][VpcId,SubnetId,AvailabilityZone]' --output table  (List of Subnets within VPCs)
+```
 #  end   #
