@@ -60,7 +60,7 @@ output "myeip_id" {
 }
 
 ```
-* Add the following line in your userdata
+* And add the following line in your userdata
 ```
 /path/to/aws ec2 associate-address --instance-id $(curl http://169.254.169.254/latest/meta-data/instance-id) --allocation-id "${aws_eip.my_eip.id}" --allow-reassociation --region "${var.REGION}"
 ```
