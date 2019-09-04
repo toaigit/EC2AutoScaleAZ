@@ -1,5 +1,52 @@
 Additional options you can added to the main.tf file
 * iam_instance_profile = "{$var.IAM_ROLE}"  --> in aws_launch_configuration section
+* If you need to create S3 bucket
+```
+resource "aws_s3_bucket" "toai-remotestate"  {
+     bucket = "johndoe.statefile.domain"
+     acl = "private"
+     versioning {
+          enabled = true
+     }
+     lifecycle {
+          prevent_destroy = true
+          }
+     tags = {
+       Name     = "My StateFile Bucket"
+       Environment = "SandBox"
+       }
+}
+```
+* If you need to create a new security group.  Here is an example allow inbound ssh, 80, 443 from some servers.
+```
+resource "aws_security_group" "allow_ssh_ssl" {
+  name        = "allow_ssh_ssl"
+  description = "Allow TLS inbound traffic"
+  ingress {
+    from_port   = 443
+    to_port     = 443
+    protocol    = "tcp"
+    cidr_blocks = ["16.5.38.93/32","171.64.0.0/14"]
+  }
+  ingress {
+    from_port   = 80
+    to_port     = 80
+    protocol    = "tcp"
+    cidr_blocks = ["16.5.38.93/32","171.64.0.0/14"]
+  }
+  ingress {
+    from_port   = 22
+    to_port     = 22
+    protocol    = "tcp"
+    cidr_blocks = ["16.5.38.93/32","171.64.0.0/14"]
+  }
+
+  tags = {
+    Name = "toai_ssh_http"
+    Description = "Allow SSH HTTP from Campus and Home"
+  }
+}
+```
 * if you need Elastic IP for your instance, you can create the eip.tf file as follows
 ```
 resource "aws_eip" "my_eip" {
