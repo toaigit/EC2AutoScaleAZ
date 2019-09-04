@@ -7,7 +7,7 @@ This provides a basic frame work on creating EC2 instance with terraform.  All y
 * Note - userdata.sh is not stored/saved in the image.  it is part of the Launch Configuration (LC)   
 * main.tf - this is the main terraform template file.   
 * vars.tf - this file created by gen-vars.sh  You need to review this before run "terraform plan|apply"   
-   
+* NOTES.md - this file give you additional terraform syntax (if needed) for S3, SG, EIP, ELB, etc   
 NOTEs:   
 * Always run terraform plan and review the changes before running terraform apply.  Terraform apply may terminate the running instance and start a new instance with your changes.  
   
