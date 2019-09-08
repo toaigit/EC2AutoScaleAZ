@@ -40,6 +40,12 @@ resource "aws_security_group" "allow_ssh_ssl" {
     protocol    = "tcp"
     cidr_blocks = ["16.5.38.93/32","171.64.0.0/14"]
   }
+  egress {
+    from_port       = 0
+    to_port         = 0
+    protocol        = "-1"
+    cidr_blocks     = ["0.0.0.0/0"]
+  }
 
   tags = {
     Name = "toai_ssh_http"
@@ -125,5 +131,14 @@ aws ec2 describe-images --owner 379101102735 --query 'Images[*][ImageId,Name]' -
 ```
 aws ec2  describe-vpcs --query 'Vpcs[*][VpcId,Tags[?Key==`Name`].Value[]]' --output=table  (List of VPCs)
 aws ec2 describe-subnets --query 'Subnets[*][VpcId,SubnetId,AvailabilityZone]' --output table  (List of Subnets within VPCs)
+```
+
+* ARN resource name
+```
+VPC: arn:aws:ec2:REGION:AWSACCT:vpc/VPCID, or arn:aws:ec2:REGION:AWSACCT:vpc/*
+SGR: arn:aws:ec2:REGION:AWSACCT:security-group/* , OR arn:aws:ec2:REGION:AWSACCT:security-group/sg-123abc123
+VOL: arn:aws:ec2:REGION:AWSACCT:volume/*
+SUB: arn:aws:ec2:REGION:AWSACCT:subnet/subnet-1a2b3c4d"
+SECRET: arn:aws:secretsmanager:REGION:AWSACCT:secret:TestEnv/*"
 ```
 #  end   #
