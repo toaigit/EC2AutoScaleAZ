@@ -1,0 +1,6 @@
+#!/bin/bash
+/usr/bin/timedatectl set-timezone America/Los_Angeles
+/bin/hostname {{.Env.SERVERNAME}}
+echo PS1=\"[\\u@{{.Env.SERVERNAME}}]\" >> /etc/bashrc 
+systemctl restart sshd.service\n"
+aws ec2 associate-address --instance-id $(curl http://169.254.169.254/latest/meta-data/instance-id) --allocation-id "${aws_eip.my_eip.id}" --allow-reassociation --region "{{.Env.REGION}}"
