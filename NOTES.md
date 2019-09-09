@@ -135,10 +135,14 @@ aws ec2 describe-subnets --query 'Subnets[*][VpcId,SubnetId,AvailabilityZone]' -
 
 * ARN resource name
 ```
+You may needs to know the follow aws resource name (ARN) when create IAM role/policy to limit the scope.
 VPC: arn:aws:ec2:REGION:AWSACCT:vpc/VPCID, or arn:aws:ec2:REGION:AWSACCT:vpc/*
 SGR: arn:aws:ec2:REGION:AWSACCT:security-group/* , OR arn:aws:ec2:REGION:AWSACCT:security-group/sg-123abc123
 VOL: arn:aws:ec2:REGION:AWSACCT:volume/*
 SUB: arn:aws:ec2:REGION:AWSACCT:subnet/subnet-1a2b3c4d"
+S3 : arn:aws:s3:::bucket_name or arn:aws:s3:::buckent_name/path/*
 SECRET: arn:aws:secretsmanager:REGION:AWSACCT:secret:TestEnv/*"
+
+NOTE: You can use https://awspolicygen.s3.amazonaws.com/policygen.html to generate the policy.
 ```
 #  end   #
