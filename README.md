@@ -1,11 +1,14 @@
 ### Overview
-This provides a basic frame work on creating EC2 instance with terraform.  All you need is to update the vars.env file with appropriate values of your AWS accounts such as AMI, VPC, SG. 
+This provides a basic frame work for creating EC2 instance using terraform.  All you need is to update the vars.env file with appropriate values of your AWS accounts such as AMI, VPC, Security Group. 
 * vars.env - Update this file before running gen-vars.sh script.
 * gen-vars.sh - It generates backend.tf, vars.tf, and userdata.sh files based on the vars.env values.
 * backend.tf - This file is created by gen-vars.sh.  It specifes S3 bucket/filename to store the remote state file.
 * userdata.sh - This file is created by gen-vars.sh. It is for EC2 to execute after the EC2 is up.   
 * Note - userdata.sh is not stored/saved in the image.  it is part of the Launch Configuration (LC)   
-* main.tf - this is the main terraform template file.   
+* main.templ - this is the main.tf terraform template file for EC2 with ASG. (used by gen-vars.sh)
+* userdata.templ this is the userdata template for EC2 with ASG (used by gen-vars.sh)
+* main-eip.templ - this is the main.tf terraform template file for EC2 with ASG and EIP (used by gen-vars.sh).
+* userdata-eip.templ - this is the userdata template for EC2 with ASG and EIP (used by gen-vars.sh)
 * vars.tf - this file created by gen-vars.sh  You need to review this before run "terraform plan|apply"   
 * NOTES.md - this file give you additional terraform syntax (if needed) for S3, SG, EIP, ELB, etc   
 NOTEs:   
@@ -14,6 +17,7 @@ NOTEs:
 * Always store state file to remote storage (such as S3).  if you delete the state file, terraform doesn't know the current state of your EC2 instance, it will try to create a new instance.   
 
 * You should not make change to the EC2 manually with CLI, or from console.  
+* You should alway use tags for any aws resource you created.  This is for tracking purpose.
 * gen-vars.sh requires gomplate.  To Install gomplate curl -o /usr/local/bin/gomplate -sSL https://github.com/hairyhenderson/gomplate/releases/download/v3.5.0/gomplate_linux-amd64; chmod 755 /usr/local/bin/gomplate
 
 ### Steps to create EC2
@@ -21,6 +25,6 @@ NOTEs:
 *  Run ./gen-vars.sh (Making sure you have installed gomplate)
 *  You should see backend.ft, userdata.sh, main.tf and vars.tf in the folder now.
 *  Set AWS environment variabes AWS_ACCESS_KEY_ID, AWS_SECRET_ACCESS_KEY, AWS_DEFAULT_REGION
-*  Run terrafrom init, terraform plan, and terraform apply.
-*  To save money, you may want to run terraform destroy.
+*  Run terrafrom init (one time), then terraform plan, and terraform apply.
+*  To save money, you may want to run terraform destroy when you are no longer needed.
 #  end   #
